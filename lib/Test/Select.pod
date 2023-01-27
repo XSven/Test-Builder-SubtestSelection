@@ -1,0 +1,33 @@
+=pod
+
+=head1 NAME
+
+Test::Select - Select subtests by name or by number
+
+=head1 DESCRIPTION
+
+For this module to work, your subtests must be independent within your test
+scripts. That's good test discipline anyway, though.
+
+=head1 SEE ALSO
+
+=over 2
+
+=item *
+
+L<Test::Named|https://metacpan.org/pod/Test::Named>
+
+=back
+
+=head1 AUTHOR
+
+Sven Willenbuecher <sven.willenbuecher@gmx.de>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2023 by Sven Willenbuecher.
+
+This is free software; you can redistribute it and/or modify it under the
+same terms as the Perl 5 programming language system itself.
+
+=cut
