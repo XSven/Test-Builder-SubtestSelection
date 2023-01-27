@@ -13,7 +13,7 @@ on 'runtime' => sub {
 };
 
 on 'test' => sub {
-  requires 'Test::More' => '0';
+  requires 'Test::More' => '0.99';
 };
 
 on 'develop' => sub {

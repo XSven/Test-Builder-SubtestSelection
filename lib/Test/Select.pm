@@ -19,7 +19,7 @@ install_modifier 'Test::Builder', 'around', 'subtest', sub {
 
   my $current_test = $self->current_test + 1;
   if ( $subtest =~ /\A \d+ \z/x ? $current_test != $subtest : $name !~ m/$subtest/ ) {
-    $self->skip( 'not selected', $name );
+    $self->skip( 'triggered by ' . __PACKAGE__, $name );
   } else {
     goto $orig;
   }
