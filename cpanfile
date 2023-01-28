@@ -8,12 +8,8 @@ on 'configure' => sub {
 };
 
 on 'runtime' => sub {
-  requires 'Class::Method::Modifiers' => '>= 2.00';
-  requires 'Getopt::Long'             => '>= 2.24';
-};
-
-on 'test' => sub {
-  requires 'Test::More' => '0.99';
+  requires 'Getopt::Long' => '>= 2.24';
+  requires 'Test::More'   => '>= 0.99';
 };
 
 on 'develop' => sub {

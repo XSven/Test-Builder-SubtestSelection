@@ -6,8 +6,8 @@ BEGIN {
   @ARGV = qw( -s 2 );
 }
 
+use Test::Select;
 use Test::Builder::Tester tests => 1;
-use Test::Select qw();
 use Test::More import => [ qw( pass plan subtest ) ];
 
 test_out( 'ok 1 # skip triggered by Test::Select' );

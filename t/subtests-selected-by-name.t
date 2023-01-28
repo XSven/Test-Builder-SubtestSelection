@@ -6,8 +6,8 @@ BEGIN {
   @ARGV = ( '-s', 'fi..t' ); # matching 'first'
 }
 
+use Test::Select;
 use Test::Builder::Tester tests => 1;
-use Test::Select qw();
 use Test::More import => [ qw( pass plan subtest ) ];
 
 test_out( '# Subtest: first' );
