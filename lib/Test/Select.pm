@@ -14,16 +14,20 @@ BEGIN {
 use Getopt::Long qw( GetOptions :config posix_default );
 
 my @subtest_selection;
-GetOptions( 's|subtest=s' => \@subtest_selection );    # parse @ARGV
+# parse @ARGV
+GetOptions( 's|subtest=s' => \@subtest_selection );
 
 sub import { shift->new; }
 
+# override Test::Builder::subtest()
 sub subtest {
   my ( $self, $name ) = @_;
 
-  my $class = ref $self;
+  my $class        = ref $self;
   my $current_test = $self->current_test + 1;
-  if ( not @subtest_selection or grep { $_ =~ /\A [1-9]\d* \z/x ? $current_test == $_ : $name =~ m/$_/ } @subtest_selection ) {
+  if ( not @subtest_selection
+    or grep { m/\A [1-9]\d* \z/x ? $current_test == $_ : $name =~ m/ $_ /x } @subtest_selection )
+  {
     goto $class->can( 'SUPER::subtest' );
   } else {
     $self->skip( "triggered by $class", $name );
