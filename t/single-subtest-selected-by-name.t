@@ -3,19 +3,19 @@ use strict; use warnings;
 #>>>
 
 BEGIN {
-  @ARGV = qw( -s 2 );
+  @ARGV = ( '-s', 'fi..t' ); # matching 'first'
 }
 
 use Test::Select;
 use Test::Builder::Tester tests => 1;
 use Test::More import => [ qw( pass plan subtest ) ];
 
-test_out( 'ok 1 # skip triggered by Test::Select' );
-test_out( '# Subtest: second' );
+test_out( '# Subtest: first' );
 test_out( '    1..2' );
-test_out( '    ok 1 - second 1' );
-test_out( '    ok 2 - second 2' );
-test_out( 'ok 2 - second' );
+test_out( '    ok 1 - first 1' );
+test_out( '    ok 2 - first 2' );
+test_out( 'ok 1 - first' );
+test_out( 'ok 2 # skip triggered by Test::Select' );
 
 subtest 'first' => sub {
   plan tests => 2;
@@ -29,4 +29,4 @@ subtest 'second' => sub {
   pass( 'second 2' );
 };
 
-test_test( 'second subtest selected' );
+test_test( 'first subtest selected by name' );

@@ -2,8 +2,12 @@
 use strict; use warnings;
 #>>>
 
+BEGIN {
+  @ARGV = ( '-s', 1, '-s', 'second' );
+}
+
+use Test::Select;
 use Test::Builder::Tester tests => 1;
-use Test::Select qw();
 use Test::More import => [ qw( pass plan subtest ) ];
 
 test_out( '# Subtest: first' );
@@ -29,4 +33,4 @@ subtest 'second' => sub {
   pass( 'second 2' );
 };
 
-test_test( 'no subtests selected' );
+test_test( 'first subtest selected by number and second subtest selected by name' );
