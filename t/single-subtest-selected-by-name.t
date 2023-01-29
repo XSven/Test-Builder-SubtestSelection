@@ -6,7 +6,7 @@ BEGIN {
   @ARGV = ( '-s', 'fi..t' ); # matching 'first'
 }
 
-use Test::Select;
+use Test::Builder::SubtestSelection;
 use Test::Builder::Tester tests => 1;
 use Test::More import => [ qw( pass plan subtest ) ];
 
@@ -15,7 +15,7 @@ test_out( '    1..2' );
 test_out( '    ok 1 - first 1' );
 test_out( '    ok 2 - first 2' );
 test_out( 'ok 1 - first' );
-test_out( 'ok 2 # skip triggered by Test::Select' );
+test_out( 'ok 2 # skip forced by Test::Builder::SubtestSelection' );
 
 subtest 'first' => sub {
   plan tests => 2;

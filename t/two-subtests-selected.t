@@ -6,7 +6,7 @@ BEGIN {
   @ARGV = ( '-s', 1, '-s', 'second' );
 }
 
-use Test::Select;
+use Test::Builder::SubtestSelection;
 use Test::Builder::Tester tests => 1;
 use Test::More import => [ qw( pass plan subtest ) ];
 

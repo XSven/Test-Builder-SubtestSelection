@@ -6,11 +6,11 @@ BEGIN {
   @ARGV = qw( -s 2 );
 }
 
-use Test::Select;
+use Test::Builder::SubtestSelection;
 use Test::Builder::Tester tests => 1;
 use Test::More import => [ qw( pass plan subtest ) ];
 
-test_out( 'ok 1 # skip triggered by Test::Select' );
+test_out( 'ok 1 # skip forced by Test::Builder::SubtestSelection' );
 test_out( '# Subtest: second' );
 test_out( '    1..2' );
 test_out( '    ok 1 - second 1' );

@@ -6,26 +6,26 @@ use Config                        qw( %Config );
 use ExtUtils::MakeMaker::CPANfile qw( WriteMakefile );
 
 my %WriteMakefileArgs = (
-  NAME          => 'Test::Select',
+  NAME          => 'Test::Builder::SubtestSelection',
   AUTHOR        => 'Sven Willenbuecher <sven.willenbuecher@kuehne-nagel.com>',
-  VERSION_FROM  => 'lib/Test/Select.pm',
-  ABSTRACT_FROM => 'lib/Test/Select.pod',
+  VERSION_FROM  => 'lib/Test/Builder/SubtestSelection.pm',
+  ABSTRACT_FROM => 'lib/Test/Builder/SubtestSelection.pod',
   LICENSE       => 'Perl_5',
   META_MERGE    => {
     'meta-spec' => { version => 2 },
     resources   => {
       repository => {
         type => 'git',
-        url  => 'git://github.com/XSven/Test-Select.git',
-        web  => 'https://github.com/XSven/Test-Select',
+        url  => 'git://github.com/XSven/Test-Builder-SubtestSelection.git',
+        web  => 'https://github.com/XSven/Test-Builder-SubtestSelection',
       },
       bugtracker => {
-        web => 'https://github.com/XSven/Test-Select/issues',
+        web => 'https://github.com/XSven/Test-Builder-SubtestSelection/issues',
       },
     },
   },
   dist      => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-  clean     => { FILES    => 'Test-Select-* cover_db' },
+  clean     => { FILES    => 'Test-Builder-SubtestSelection-* cover_db' },
   realclean => { FILES    => 'local' },
 );
 

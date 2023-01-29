@@ -2,7 +2,7 @@
 use strict; use warnings;
 #>>>
 
-package Test::Select;
+package Test::Builder::SubtestSelection;
 
 our $VERSION = '0.001';
 
@@ -30,7 +30,7 @@ sub subtest {
   {
     goto $class->can( 'SUPER::subtest' );
   } else {
-    $self->skip( "triggered by $class", $name );
+    $self->skip( "forced by $class", $name );
   }
 }
 

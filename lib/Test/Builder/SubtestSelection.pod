@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Test::Select - Select subtests by name or by number
+Test::Builder::SubtestSelection - Select subtests by name or by number
 
 =head1 DESCRIPTION
 
