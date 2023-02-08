@@ -25,9 +25,11 @@ sub subtest {
 
   my $class        = ref $self;
   my $current_test = $self->current_test + 1;
-  if ( defined $self->parent
+  if (
+    defined $self->parent    # ignore nested subtests
     or not @subtest_selection
-    or grep { m/\A [1-9]\d* \z/x ? $current_test == $_ : $name =~ m/ $_ /x } @subtest_selection )
+    or grep { m/\A [1-9]\d* \z/x ? $current_test == $_ : $name =~ m/ $_ /x } @subtest_selection
+    )
   {
     goto $class->can( 'SUPER::subtest' );
   } else {
