@@ -3,7 +3,7 @@ use strict; use warnings;
 #>>>
 
 BEGIN {
-  @ARGV = ( '-s', 1, '-s', 'second' );
+  @ARGV = ( '-s', 1, '-s', 'second subtest' );
 }
 
 use Test::Builder::SubtestSelection;
@@ -15,11 +15,11 @@ test_out( '    1..2' );
 test_out( '    ok 1 - first 1' );
 test_out( '    ok 2 - first 2' );
 test_out( 'ok 1 - first' );
-test_out( '# Subtest: second' );
+test_out( '# Subtest: second subtest' );
 test_out( '    1..2' );
 test_out( '    ok 1 - second 1' );
 test_out( '    ok 2 - second 2' );
-test_out( 'ok 2 - second' );
+test_out( 'ok 2 - second subtest' );
 
 subtest 'first' => sub {
   plan tests => 2;
@@ -27,7 +27,7 @@ subtest 'first' => sub {
   pass( 'first 2' );
 };
 
-subtest 'second' => sub {
+subtest 'second subtest' => sub {
   plan tests => 2;
   pass( 'second 1' );
   pass( 'second 2' );
