@@ -36,8 +36,9 @@ This class assumes that L<Test::Builder> subtests are used to group related
 test function calls inside a test script. The class allows you to select
 subtests by name or by number to run them. The name of a subtest is more like a
 description. Any string is allowed and no special naming convention needs to be
-followed. The selection process itself applies to top-level (not nested)
-subtests only!
+followed. If possible each string is treated as a regular expression; otherwise
+meta characters are properly quoted. The selection process itself applies to
+top-level (not nested) subtests only!
 
   # run all subtests
   prove -v -b t/basic.t
