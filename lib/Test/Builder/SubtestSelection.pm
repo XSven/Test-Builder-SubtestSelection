@@ -15,7 +15,12 @@ use Getopt::Long qw( GetOptions :config posix_default );
 
 my @subtest_selection;
 # parse @ARGV
-GetOptions( 's|subtest=s' => \@subtest_selection );
+GetOptions(
+  's|subtest=s' => sub {
+    ( undef, my $opt_value ) = @_;
+    push @subtest_selection, eval { qr/$opt_value/ } ? $opt_value : "\Q$opt_value\E";
+  }
+);
 
 sub import { shift->new; }
 
