@@ -3,7 +3,7 @@ use strict; use warnings;
 #>>>
 
 BEGIN {
-  @ARGV = ( '-s', 'fi..t' ); # matching 'first'
+  @ARGV = ( '--subtest', 'fi..t' ); # matching 'first'
 }
 
 use Test::Builder::SubtestSelection;

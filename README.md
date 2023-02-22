@@ -11,6 +11,7 @@ use strict; use warnings;
 # create test builder singleton instance first
 use Test::Builder::SubtestSelection;
 
+# use test builder base framework
 use Test::More tests => 2;
 
 subtest 'this' => sub {
@@ -32,19 +33,23 @@ calls are independent within the test script, which is anyway a good test
 discipline, it should be possible to run them individually. The [Test::Named](https://metacpan.org/pod/Test%3A%3ANamed)
 module supports this approach.
 
-This class assumes that [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder) subtests are used to group related
+This class is a subclass of [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder) that overrides its `subtest()`
+method. It assumes that [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder) subtests are used to group related
 test function calls inside a test script. The class allows you to select
 subtests by name or by number to run them. The name of a subtest is more like a
 description. Any string is allowed and no special naming convention needs to be
 followed. If possible each string is treated as a regular expression; otherwise
 meta characters are properly quoted. The selection process itself applies to
-top-level (not nested) subtests only!
+top-level (not nested) subtests only! The selection criteria (name or number)
+is the value of either the short `-s` or long `--subtest` option that have to
+be supplied together as arguments to the test script. To do so separate the
+arguments from prove's own arguments with the arisdottle (`::`). Example:
 
 ```perl
 # run all subtests
 prove -v -b t/basic.t
 # run "this"
-prove -v -b t/basic.t :: --subtest 1
+prove -v -b t/basic.t :: -s 1
 # run "or that"
 prove -v -b t/basic.t :: --subtest 'or that'
 ```
