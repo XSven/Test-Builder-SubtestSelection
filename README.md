@@ -25,7 +25,7 @@ subtest 'or that' => sub {
 
 # DESCRIPTION
 
-The Modern Perl blog entries referred to in the ["SEE ALSO"](#see-also)) section
+The Modern Perl blog entries referred to in the ["SEE ALSO"](#see-also) section
 describe how usual Perl functions can be used to group related test function
 calls inside a test script. By convention the name of each such a grouping
 function should start with the `test_` prefix. If the groups of test function
@@ -33,15 +33,16 @@ calls are independent within the test script, which is anyway a good test
 discipline, it should be possible to run them individually. The [Test::Named](https://metacpan.org/pod/Test%3A%3ANamed)
 module supports this approach.
 
-This class is a subclass of [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder) that overrides its `subtest()`
-method. It assumes that [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder) subtests are used to group related
-test function calls inside a test script. The class allows you to select
-subtests by name or by number to run them. The name of a subtest is more like a
-description. Any string is allowed and no special naming convention needs to be
-followed. If possible each string is treated as a regular expression; otherwise
-meta characters are properly quoted. The selection process itself applies to
-top-level (not nested) subtests only! The selection criteria (name or number)
-is the value of either the short `-s` or long `--subtest` option that have to
+This `Test::Builder::SubtestSelection` class is a subclass of [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder)
+that overrides its `subtest()` method. It assumes that [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder)
+subtests are used to group related test function calls inside a test
+script. The class allows you to select subtests by name or by number to
+run them. The name of a subtest is more like a description. Any string is
+allowed and no special naming convention needs to be followed. If possible
+each string is treated as a regular expression; otherwise meta characters
+are properly quoted. The selection process itself applies to top-level
+(not nested) subtests only! The selection criteria (name or number) is the
+value of either the short `-s` or long `--subtest` option that have to
 be supplied together as arguments to the test script. To do so separate the
 arguments from prove's own arguments with the arisdottle (`::`). Example:
 

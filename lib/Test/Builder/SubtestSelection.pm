@@ -4,7 +4,7 @@ use strict; use warnings;
 
 package Test::Builder::SubtestSelection;
 
-our $VERSION = '0.001';
+our $VERSION = '0.001001';
 
 BEGIN {
   require parent;
