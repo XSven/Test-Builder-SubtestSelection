@@ -10,6 +10,11 @@ on 'configure' => sub {
 on 'runtime' => sub {
   requires 'Getopt::Long' => '>= 2.24';
   requires 'Test::More'   => '>= 0.99';
+  requires 'parent'       => '0';
+};
+
+on 'test' => sub {
+  requires 'Test::Builder::Tester' => '0';
 };
 
 on 'develop' => sub {

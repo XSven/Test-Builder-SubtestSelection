@@ -11,7 +11,7 @@ use strict; use warnings;
 # create test builder singleton instance first
 use Test::Builder::SubtestSelection;
 
-# use test builder base framework
+# use test builder based framework
 use Test::More tests => 2;
 
 subtest 'this' => sub {

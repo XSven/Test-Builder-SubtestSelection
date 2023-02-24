@@ -6,12 +6,13 @@ use Config                        qw( %Config );
 use ExtUtils::MakeMaker::CPANfile qw( WriteMakefile );
 
 my %WriteMakefileArgs = (
-  NAME          => 'Test::Builder::SubtestSelection',
-  AUTHOR        => 'Sven Willenbuecher <sven.willenbuecher@kuehne-nagel.com>',
-  VERSION_FROM  => 'lib/Test/Builder/SubtestSelection.pm',
-  ABSTRACT_FROM => 'lib/Test/Builder/SubtestSelection.pod',
-  LICENSE       => 'Perl_5',
-  META_MERGE    => {
+  NAME             => 'Test::Builder::SubtestSelection',
+  AUTHOR           => 'Sven Willenbuecher <sven.willenbuecher@kuehne-nagel.com>',
+  VERSION_FROM     => 'lib/Test/Builder/SubtestSelection.pm',
+  ABSTRACT_FROM    => 'lib/Test/Builder/SubtestSelection.pod',
+  LICENSE          => 'Perl_5',
+  MIN_PERL_VERSION => '5.6.2',
+  META_MERGE       => {
     'meta-spec' => { version => 2 },
     resources   => {
       repository => {
@@ -31,7 +32,8 @@ my %WriteMakefileArgs = (
 
 unless ( $Config{ osname } =~ m/\A(?:freebsd|openbsd|solaris)\z/ or exists( $ENV{ MAKELEVEL } ) ) {
   my $local_lib = "$ENV{ PWD }/local/lib/perl5";
-  require lib; lib->import( $local_lib );
+  require lib;
+  lib->import( $local_lib );
 
   no warnings 'once';
   *MY::postamble = sub {
