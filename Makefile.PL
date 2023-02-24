@@ -14,7 +14,11 @@ my %WriteMakefileArgs = (
   MIN_PERL_VERSION => '5.6.2',
   META_MERGE       => {
     'meta-spec' => { version => 2 },
-    resources   => {
+    provides    => 'Test::Builder::SubtestSelection' => {
+      file    => 'lib/Test/Builder/SubtestSelection.pm',
+      version => '0.001002',
+    },
+    resources => {
       repository => {
         type => 'git',
         url  => 'git://github.com/XSven/Test-Builder-SubtestSelection.git',
