@@ -61,6 +61,12 @@ installdeps: $local_lib_root
 .PHONY: cover
 cover:
 	cover -test -ignore local -report vim
+
+README.md: $WriteMakefileArgs{ ABSTRACT_FROM }
+	perl -MPod::Markdown::Github -e 'my \$\$parser = Pod::Markdown::Github->new( output_encoding => "UTF-8" ); \$\$parser->output_fh( \*STDOUT ); \$\$parser->parse_file( \$\$ARGV[ 0 ] )' \$< > \$@
+
+.PHONY: readme
+readme: README.md
 MAKE_FRAGMENT
 
     return $make_fragment;
