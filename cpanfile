@@ -19,5 +19,6 @@ on 'test' => sub {
 
 on 'develop' => sub {
   suggests 'App::Software::License' => '0';
+  suggests 'App::cpanminus'         => '>= 1.7046';
   suggests 'Pod::Markdown::Github'  => '0';
 };

@@ -17,7 +17,7 @@ my %WriteMakefileArgs = (
     provides    => {
       'Test::Builder::SubtestSelection' => {
         file    => 'lib/Test/Builder/SubtestSelection.pm',
-        version => '0.001002',
+        version => '0.001003',
       },
     },
     resources => {
@@ -37,7 +37,8 @@ my %WriteMakefileArgs = (
 );
 
 unless ( $Config{ osname } =~ m/\A(?:freebsd|openbsd|solaris)\z/ or exists( $ENV{ MAKELEVEL } ) ) {
-  my $local_lib = "$ENV{ PWD }/local/lib/perl5";
+  my $local_lib_root = "$ENV{ PWD }/local";
+  my $local_lib      = "$local_lib_root/lib/perl5";
   require lib;
   lib->import( $local_lib );
 
@@ -50,9 +51,12 @@ else
   export PERL5LIB := $local_lib
 endif
 
+$local_lib_root: cpanfile
+	rm -fr \$@
+	cpanm --no-man-pages --local-lib-contained \$@ --installdeps .
+
 .PHONY: installdeps
-installdeps: cpanfile
-	cpanm --no-man-pages --local-lib-contained $local_lib/../.. --installdeps .
+installdeps: $local_lib_root
 
 .PHONY: cover
 cover:
