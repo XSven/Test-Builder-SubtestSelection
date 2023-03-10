@@ -36,41 +36,7 @@ my %WriteMakefileArgs = (
   realclean => { FILES    => 'local' },
 );
 
-unless ( $Config{ osname } =~ m/\A(?:freebsd|openbsd|solaris)\z/ or exists( $ENV{ MAKELEVEL } ) ) {
-  my $local_lib_root = "$ENV{ PWD }/local";
-  my $local_lib      = "$local_lib_root/lib/perl5";
-  require lib;
-  lib->import( $local_lib );
-
-  no warnings 'once';
-  *MY::postamble = sub {
-    my $make_fragment .= <<"MAKE_FRAGMENT";
-ifdef PERL5LIB
-  PERL5LIB := $local_lib:\$(PERL5LIB)
-else
-  export PERL5LIB := $local_lib
-endif
-
-$local_lib_root: cpanfile
-	rm -fr \$@
-	cpanm --no-man-pages --local-lib-contained \$@ --installdeps .
-
-.PHONY: installdeps
-installdeps: $local_lib_root
-
-.PHONY: cover
-cover:
-	cover -test -ignore local -report vim
-
-README.md: $WriteMakefileArgs{ ABSTRACT_FROM }
-	perl -MPod::Markdown::Github -e 'my \$\$parser = Pod::Markdown::Github->new( output_encoding => "UTF-8" ); \$\$parser->output_fh( \*STDOUT ); \$\$parser->parse_file( \$\$ARGV[ 0 ] )' \$< > \$@
-
-.PHONY: readme
-readme: README.md
-MAKE_FRAGMENT
-
-    return $make_fragment;
-  }
-}
+require './maint/AuthorExtensions.pl'
+  unless ( $Config{ osname } =~ m/\A(?:freebsd|openbsd|solaris)\z/ or exists( $ENV{ MAKELEVEL } ) );
 
 WriteMakefile( %WriteMakefileArgs );

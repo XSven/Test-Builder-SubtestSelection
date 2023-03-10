@@ -1,9 +1,9 @@
 Release history for Test-Builder-SubtestSelection
 
-0.001003  2023-03-08
+0.001003  2023-03-10
           - improve installdeps phony target
-          - add readme phony target
-          - make cpanm a develop prerequisite
+          - update prerequisite
+          - improve documentation and create readme file
 
 0.001002  2023-02-24
           - update prerequisites
