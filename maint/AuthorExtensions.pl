@@ -7,15 +7,19 @@ use subs qw ( _which );
 use Config     qw( %Config );
 use File::Spec qw();
 
-my $local_lib_root = "$ENV{ PWD }/local";
-my $local_lib      = "$local_lib_root/lib/perl5";
-require lib;
-lib->import( $local_lib );
+my ( $local_lib_root, $local_lib );
 
-no warnings 'once';
-*MY::postamble = sub {
-  my $make_fragment = '';
-  $make_fragment .= <<"MAKE_FRAGMENT" if _which 'cpanm';
+BEGIN {
+  $local_lib_root = "$ENV{ PWD }/local";
+  $local_lib      = "$local_lib_root/lib/perl5";
+}
+use lib $local_lib;
+
+{
+  no warnings 'once';
+  *MY::postamble = sub {
+    my $make_fragment = '';
+    $make_fragment .= <<"MAKE_FRAGMENT" if _which 'cpanm';
 ifdef PERL5LIB
   PERL5LIB := $local_lib:\$(PERL5LIB)
 else
@@ -30,15 +34,16 @@ $local_lib_root: cpanfile
 installdeps: $local_lib_root
 MAKE_FRAGMENT
 
-  $make_fragment .= <<"MAKE_FRAGMENT" if _which 'cover';
+    $make_fragment .= <<"MAKE_FRAGMENT" if _which 'cover';
 
 .PHONY: cover
 cover:
 	cover -test -ignore local -report vim
 MAKE_FRAGMENT
 
-  return $make_fragment;
-};
+    return $make_fragment;
+  };
+}
 
 sub _which ( $ ) {
   my ( $executable ) = @_;
