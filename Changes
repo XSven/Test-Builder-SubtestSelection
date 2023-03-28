@@ -1,5 +1,8 @@
 Release history for Test-Builder-SubtestSelection
 
+0.001004  2023-03-28
+          - fix wrong module name in readme
+
 0.001003  2023-03-18
           - improve installdeps phony target
           - update prerequisite

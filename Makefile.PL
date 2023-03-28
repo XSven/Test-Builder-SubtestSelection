@@ -17,7 +17,7 @@ my %WriteMakefileArgs = (
     provides    => {
       'Test::Builder::SubtestSelection' => {
         file    => 'lib/Test/Builder/SubtestSelection.pm',
-        version => '0.001003',
+        version => '0.001004',
       },
     },
     resources => {

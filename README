@@ -24,7 +24,7 @@ DOCUMENTATION
 After the installation, you can find documentation for this module with the
 command:
 
-  perldoc App::Logtail3
+  perldoc Test::Builder::SubtestSelection
 
 MAINTENANCE
 
